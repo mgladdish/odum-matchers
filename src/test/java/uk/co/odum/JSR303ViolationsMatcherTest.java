@@ -22,6 +22,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static uk.co.odum.JSR303ViolationsMatcher.hasNoViolations;
 import static uk.co.odum.JSR303ViolationsMatcher.hasViolation;
 import static uk.co.odum.JSR303ViolationsMatcher.hasViolations;
 
@@ -47,7 +48,7 @@ public class JSR303ViolationsMatcherTest {
     }
 
     @Test(expected = AssertionError.class)
-    public void noViolationsShouldFailTest() {
+    public void noViolationsShouldFailHasViolationsTest() {
         annotated.name = "A valid name";
         assertThat(annotated, hasViolations());
     }
@@ -58,7 +59,7 @@ public class JSR303ViolationsMatcherTest {
     }
 
     @Test(expected = AssertionError.class)
-    public void unexpectedInterpolatedMessageShouldFailTest() {
+    public void unexpectedInterpolatedMessageShouldFailHasViolationsTest() {
         assertThat(annotated, hasViolation("there is no violation with this message"));
     }
 
@@ -74,5 +75,15 @@ public class JSR303ViolationsMatcherTest {
         assertThat(annotated, hasViolation("maximum number message"));
     }
 
+    @Test
+    public void noViolationsShouldPassHasNoViolationsTest() {
+        annotated.name = "A valid name";
+        assertThat(annotated, hasNoViolations());
+    }
+
+    @Test(expected = AssertionError.class)
+    public void violationsShouldFailHasNoViolationsTest() {
+        assertThat(annotated, hasNoViolations());
+    }
 
 }

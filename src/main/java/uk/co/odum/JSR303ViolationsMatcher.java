@@ -30,10 +30,12 @@ public class JSR303ViolationsMatcher<T> extends TypeSafeMatcher<T> {
     private Validator validator;
     private Set<ConstraintViolation<T>> violations;
     private String interpolatedMessage;
+    private boolean matchWithViolations;
 
-    public JSR303ViolationsMatcher(String interpolatedMessage) {
+    public JSR303ViolationsMatcher(String interpolatedMessage, boolean matchWithViolations) {
         validator = buildDefaultValidatorFactory().getValidator();
         this.interpolatedMessage = interpolatedMessage;
+        this.matchWithViolations = matchWithViolations;
     }
 
     @Override
@@ -43,7 +45,7 @@ public class JSR303ViolationsMatcher<T> extends TypeSafeMatcher<T> {
             return violationsContainsMessage(interpolatedMessage);
         }
         else {
-            return violations.size() > 0;
+            return matchWithViolations ? violations.size() > 0 : violations.size() == 0;
         }
     }
 
@@ -75,11 +77,16 @@ public class JSR303ViolationsMatcher<T> extends TypeSafeMatcher<T> {
 
     @Factory
     public static JSR303ViolationsMatcher hasViolations() {
-        return new JSR303ViolationsMatcher(null);
+        return new JSR303ViolationsMatcher(null, true);
     }
 
     @Factory
     public static JSR303ViolationsMatcher hasViolation(String interpolatedMessage) {
-        return new JSR303ViolationsMatcher(interpolatedMessage);
+        return new JSR303ViolationsMatcher(interpolatedMessage, true);
+    }
+
+    @Factory
+    public static JSR303ViolationsMatcher hasNoViolations() {
+        return new JSR303ViolationsMatcher(null, false);
     }
 }
