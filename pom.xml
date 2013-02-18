@@ -8,7 +8,24 @@
     <packaging>jar</packaging>
 
     <name>odum-matchers</name>
+    <description>A set of additional hamcrest matchers</description>
     <url>https://github.com/mgladdish/odum-matchers</url>
+
+    <organization>
+        <name>Odum Software Limited</name>
+        <url>http://odum.co.uk</url>
+    </organization>
+
+    <!--licenses>
+        <license>
+            <name></name>
+        </license>
+    </licenses-->
+
+    <issueManagement>
+        <url>https://github.com/mgladdish/odum-matchers/issues</url>
+        <system>github</system>
+    </issueManagement>
 
     <scm>
         <connection>scm:git:git@github.com:mgladdish/odum-matchers.git</connection>
@@ -34,6 +51,7 @@
         <developer>
             <name>Martin Gladdish</name>
             <organization>Odum Software Limited</organization>
+            <id>mgladdish</id>
         </developer>
     </developers>
 
@@ -55,7 +73,7 @@
 
         <dependency>
             <groupId>junit</groupId>
-            <artifactId>junit-dep</artifactId>
+            <artifactId>junit</artifactId>
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
