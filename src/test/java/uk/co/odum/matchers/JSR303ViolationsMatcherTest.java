@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.co.odum;
+package uk.co.odum.matchers;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -22,9 +22,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static uk.co.odum.JSR303ViolationsMatcher.hasNoViolations;
-import static uk.co.odum.JSR303ViolationsMatcher.hasViolation;
-import static uk.co.odum.JSR303ViolationsMatcher.hasViolations;
+import static uk.co.odum.matchers.JSR303ViolationsMatcher.*;
 
 public class JSR303ViolationsMatcherTest {
 
